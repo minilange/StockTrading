@@ -1,5 +1,5 @@
 export interface IHistory {
-  Ticker: string
-  Price: number
-  TimeStamp: string
+  ticker: string
+  price: number
+  timeStamp: string
 }

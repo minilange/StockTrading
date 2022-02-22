@@ -1,12 +1,11 @@
 const PROXY_CONFIG = [
   {
     context: [
-      "/stock",
-      "/transaction",
-      "/history",
+      "/*"
     ],
-    target: "https://localhost:7017",
-    secure: false
+    target: "https://localhost:7017/",
+    secure: false,
+    changeOrigin: true
   }
 ]
 

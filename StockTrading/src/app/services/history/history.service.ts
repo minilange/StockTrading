@@ -16,17 +16,18 @@ export class HistoryService {
 
   constructor(private http: HttpClient) { } 
 
-  getHistory(ticker: string): Observable<IChartData[][]> {
+  getHistory(ticker: string): Observable<IChartData[]> {
     return this.http.get<IHistory[]>('/history?ticker=' + ticker).pipe(
       map(res => {
-        console.log(res);
-        let charData: IChartData[][] = [];
+        //console.log(res);
+        let charData: IChartData[] = [];
         for (let record of res) {
           let tmp: IChartData = {
-            date: record.TimeStamp,
-            value: record.Price
+            date: record.timeStamp,
+            value: record.price
           };
-          charData[0].push(tmp);
+          //console.log(charData);
+          charData.push(tmp);
         }
         return charData;
       })
