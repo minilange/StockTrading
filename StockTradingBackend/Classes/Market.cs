@@ -28,6 +28,7 @@ namespace StockTradingBackend.Classes
         {
             using (var context = new StockMarketContext())
             {
+                
                 var stc = context.Stocks.ToList();
                 foreach (Models.Stock stock in stc)
                 {
