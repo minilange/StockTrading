@@ -3,21 +3,28 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --ssl --ssl-cert %APPDATA%\\ASP.NET\\https\\%npm_package_name%.pem --ssl-key %APPDATA%\\ASP.NET\\https\\%npm_package_name%.key",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "prestart": "node aspnetcore-https"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.2.0",
+    "@angular/cdk": "^12.2.13",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
+    "@angular/flex-layout": "^12.0.0-beta.35",
     "@angular/forms": "~12.2.0",
+    "@angular/material": "^12.2.13",
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "apexcharts": "^3.33.1",
+    "jest-editor-support": "*",
+    "ng-apexcharts": "^1.7.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
