@@ -13,6 +13,8 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { TransactionLogComponent } from './components/transaction-log/transaction-log.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonModule,
     FlexLayoutModule,
     MatTableModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

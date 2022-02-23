@@ -37,25 +37,25 @@ export class ChartComponent implements OnInit {
   constructor(private historyService: HistoryService) {
     historyService.getHistory(this.viewingStock).subscribe(() => {
 
-      setInterval(() => {
-        historyService.getHistory(this.viewingStock).subscribe(data => {
-          let ts2 = 0;
-          let dates = [];
-          for (let point of data) {
-            let tmp = new Date(point.date);
-            ts2 = tmp.getTime();
-            dates.push([ts2, point.value]);
-          }
-          console.log(dates);
+      // setInterval(() => {
+      //   historyService.getHistory(this.viewingStock).subscribe(data => {
+      //     let ts2 = 0;
+      //     let dates = [];
+      //     for (let point of data) {
+      //       let tmp = new Date(point.date);
+      //       ts2 = tmp.getTime();
+      //       dates.push([ts2, point.value]);
+      //     }
+      //     console.log(dates);
 
-          this.series = [
-            {
-              name: this.viewingStock,
-              data: dates as []
-            }
-          ];
-        })
-      }, 5000)
+      //     this.series = [
+      //       {
+      //         name: this.viewingStock,
+      //         data: dates as []
+      //       }
+      //     ];
+      //   })
+      // }, 5000)
     })
 
     this.series = [];

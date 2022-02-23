@@ -51,7 +51,6 @@ namespace StockTradingBackend.Classes
                 }
                 else
                 {
-
                     int action = rnd.Next(0, 2);
                     Stock targetedStock = TargetedStocks[rnd.Next(0, TargetedStocks.Count)];
                     
@@ -63,7 +62,6 @@ namespace StockTradingBackend.Classes
                         Console.WriteLine($"Trader: '{Name}' bought {amount} stock");
                         TradeStock(targetedStock, Action.Buy, amount);
                         operation = "buy";
-                        // LOG to DB
                         
                     }
                     else // Sells
@@ -72,7 +70,6 @@ namespace StockTradingBackend.Classes
                         Console.WriteLine($"Trader: '{Name}' sold {amount} stock");
                         TradeStock(targetedStock, Action.Sell, amount);
                         operation = "sell";
-                        // Log to DB
                     }
 
                     LogToDB(targetedStock.Name, operation, Name, oldPrice, targetedStock.Price);
@@ -84,7 +81,7 @@ namespace StockTradingBackend.Classes
 
                 //Thread.Sleep(rnd.Next(450, 555));
                 
-                Thread.Sleep(2000);
+                Thread.Sleep(5000);
             }
         }
 
@@ -106,7 +103,6 @@ namespace StockTradingBackend.Classes
                 context.SaveChanges();
             }
         }
-        
     }
 
 

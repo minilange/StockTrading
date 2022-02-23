@@ -1,1 +1,33 @@
-<p>transaction-log works!</p>
+<table mat-table fxFlexFill [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="TimeStamp">
+        <th mat-header-cell *matHeaderCellDef> TimeStamp </th>
+        <td mat-cell *matCellDef="let trans"> {{trans.timeStamp}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let trans"> {{trans.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Transactor">
+        <th mat-header-cell *matHeaderCellDef> Transactor </th>
+        <td mat-cell *matCellDef="let trans"> {{trans.transactor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let trans">
+            <div fxLayout="row">
+                <span>{{trans.price}}</span>
+                <span style=`color: ${trans.percentColor}`>({{trans.percent}})</span>
+            </div>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4"> No data was found</td>
+    </tr>
+</table>

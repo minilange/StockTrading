@@ -29,10 +29,16 @@ namespace StockTradingBackend.Classes
             TickerSymbol = ticker;
             price = latestPrice;
 
-            // Set random price...
-
             // Set random stock ammount
-            publicAvailableStock = rnd.Next(1000, 20000);
+            using (var context = new StockMarketContext())
+            {
+                // Update stock table
+                var res = context.Stocks.Where(i => i.Name == name).FirstOrDefault();
+                publicAvailableStock = res.Issued;
+
+            }
+            //publicAvailableStock = rnd.Next(1000, 20000);
+
             stockAmount = publicAvailableStock;
             //stockAmount = rnd.Next(100, 5000);
         }
