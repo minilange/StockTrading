@@ -97,8 +97,6 @@ namespace StockTradingBackend.Classes
                 trnac.Operation = opt;
                 DateTime time = DateTime.Now;
                 trnac.TimeStamp = time.ToString("yyyy-MM-ddTHH:mm:ss.ff");
-
-
                 context.Transactions.Add(trnac);
                 context.SaveChanges();
             }
