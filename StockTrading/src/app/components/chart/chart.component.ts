@@ -32,7 +32,7 @@ export class ChartComponent implements OnInit {
 
 
 
-  viewingStock: string = "ICL"
+  viewingStock: string = "BH"
 
   constructor(private historyService: HistoryService) {
     historyService.getHistory(this.viewingStock).subscribe(() => {

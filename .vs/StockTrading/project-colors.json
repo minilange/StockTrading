@@ -15,7 +15,22 @@
       "ProjectGuid": "919fd655-f067-4ba2-b932-d926e85dd6b4",
       "DisplayName": "Script Documents",
       "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "aceb9758-558d-4f23-9c60-119fc660fafb": {
+      "ProjectGuid": "aceb9758-558d-4f23-9c60-119fc660fafb",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 3
+    },
+    "373d69d4-fabb-4bb3-bc65-ead6bf2196d7": {
+      "ProjectGuid": "373d69d4-fabb-4bb3-bc65-ead6bf2196d7",
+      "DisplayName": "StockTradingBackend",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 5
 }
