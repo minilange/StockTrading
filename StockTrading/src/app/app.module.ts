@@ -15,6 +15,7 @@ import { TransactionLogComponent } from './components/transaction-log/transactio
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 
@@ -36,7 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     FlexLayoutModule,
     MatTableModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
