@@ -16,15 +16,5 @@ namespace StockTradingBackend.Controllers
                 return context.Histories.Where(hist => hist.Ticker == ticker).ToList();
             }
         }
-
-        [HttpPost]
-        public void Post(History input)
-        {
-            using (var context = new StockMarketContext())
-            {
-                context.Histories.Add(input);
-                context.SaveChanges();
-            }
-        }
     }
 }

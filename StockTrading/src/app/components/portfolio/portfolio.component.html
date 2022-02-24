@@ -1,1 +1,34 @@
-<p>portfolio works!</p>
+<table mat-table fxFlexFill [dataSource]="dataSourcePort" class="mat-elevation-z8">
+    <ng-container matColumnDef="Ticker">
+        <th mat-header-cell *matHeaderCellDef> Ticker </th>
+        <td mat-cell *matCellDef="let portf"> {{portf.ticker}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let portf"> {{portf.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let portf"> {{portf.amount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Change">
+        <th mat-header-cell *matHeaderCellDef> Change </th>
+        <td mat-cell *matCellDef="let portf"> 
+            {{portf.changePrice}} &nbsp; (
+                <span [ngClass]="portf.changePercent.charAt(0) == '-' ? 'mat-cell-red' : 'mat-cell-green'">{{portf.changePercent}}</span>
+            ) 
+
+
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsPort"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsPort"></tr>    
+
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4"> No portfolio holding was found</td>
+    </tr>
+</table>

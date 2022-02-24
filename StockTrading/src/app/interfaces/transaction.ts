@@ -1,8 +1,8 @@
 export interface ITransaction {
-  Stock: string
-  Operation: string
-  Transactor: string
-  OldPrice: number
-  NewPrice: number
-  TimeStamp: string
+  stock: string
+  operation: string
+  transactor: string
+  oldPrice: number
+  newPrice: number
+  timeStamp: string
 }

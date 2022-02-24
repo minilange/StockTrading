@@ -1,4 +1,5 @@
 ﻿using StockTradingBackend.Models;
+using StockTradingBackend.Controllers;
 
 namespace StockTradingBackend.Classes
 {
@@ -29,16 +30,24 @@ namespace StockTradingBackend.Classes
             TickerSymbol = ticker;
             price = latestPrice;
 
-            // Set random price...
-
             // Set random stock ammount
-            publicAvailableStock = rnd.Next(1000, 20000);
+            using (var context = new StockMarketContext())
+            {
+                // Update stock table
+                var res = context.Stocks.Where(i => i.Name == name).FirstOrDefault();
+                publicAvailableStock = res.Issued;
+
+            }
+            //publicAvailableStock = rnd.Next(1000, 20000);
+
             stockAmount = publicAvailableStock;
             //stockAmount = rnd.Next(100, 5000);
         }
 
-        public override void BuyItem(int amount)
+        public override async void BuyItem(int amount)
         {
+            Task<bool> haveUpdated = ReadFromDB();
+            await haveUpdated;
             //price *= amount / stockAmount + 1;
             IncreasePrice(((double)amount / (double)publicAvailableStock / 2) + 1.0);
             stockAmount -= amount;
@@ -46,8 +55,10 @@ namespace StockTradingBackend.Classes
             Console.WriteLine($"'{this.name}' has been bought, price is now ${Price} and {StockAmount} is left");
         }
 
-        public override void SellItem(int amount)
+        public override async void SellItem(int amount)
         {
+            Task<bool> haveUpdated = ReadFromDB();
+            await haveUpdated;
             //price *= 1 - amount / stockAmount;
             DecreasePrice(1.0 - ((double)amount / (double)publicAvailableStock / 2));
             stockAmount += amount;
@@ -71,6 +82,20 @@ namespace StockTradingBackend.Classes
 
             LogToDB(name, TickerSymbol, price);
         }
+
+
+        async Task<bool> ReadFromDB()
+        {
+            using (var context = new StockMarketContext())
+            {
+                var res = context.Stocks.Where(i => i.Name == name).FirstOrDefault();
+                this.price = res.Price;
+                this.stockAmount = res.Available;
+                return true;
+            }
+        }
+
+        //protected void UpdateStock()
 
         protected void LogToDB(string name, string ticker, double price)
         {

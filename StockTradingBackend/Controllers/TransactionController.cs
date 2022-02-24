@@ -16,16 +16,5 @@ namespace StockTradingBackend.Controllers
                 return context.Transactions.ToList().OrderBy(i => i.TimeStamp).Take(20);
             }
         }
-
-        [HttpPost]
-        public void Post(Transaction input)
-        {
-            using (var context = new StockMarketContext())
-            {
-                context.Transactions.Add(input);
-                context.SaveChanges();
-                //return context.Transactions.ToList();
-            }
-        }
     }
 }
