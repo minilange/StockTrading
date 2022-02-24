@@ -120,6 +120,12 @@ export class ChartComponent implements OnInit {
 
   }
 
+  public changeTicker(ticker: string){
+    console.log("Changing ticker to: " + ticker);
+    this.viewingStock = ticker;
+    console.log("Ticker is now: " + this.viewingStock);
+  }
+
   buyStock(amount: any) {
     console.log(`Buying ${amount} shares of ${this.viewingStock}`);
   }
