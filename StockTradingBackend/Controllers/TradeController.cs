@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace StockTradingBackend.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TradeController : ControllerBase
     {
@@ -22,6 +22,7 @@ namespace StockTradingBackend.Controllers
 
                     if (val == null)
                     {
+                        Console.WriteLine("Val is null");
                         return new HttpResponseMessage(HttpStatusCode.BadRequest);
                     }
 
@@ -29,6 +30,7 @@ namespace StockTradingBackend.Controllers
 
                     if (res == null || res.Ticker != val.Ticker)
                     {
+                        Console.WriteLine("res is null OR res.ticker isn't equal val.ticker");
                         return new HttpResponseMessage(HttpStatusCode.NotFound);
                     }
 

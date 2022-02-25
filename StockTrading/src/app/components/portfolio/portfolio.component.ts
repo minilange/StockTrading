@@ -1,4 +1,3 @@
-import { PortalInjector } from '@angular/cdk/portal';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { IPortfolio } from 'src/app/interfaces/portfolio';
@@ -20,15 +19,13 @@ interface IPortfolioData {
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
-
   displayedColumnsPort: string[] = ["Ticker", "Price", "Amount", "Change"];
   dataSourcePort: MatTableDataSource<IPortfolioData> = new MatTableDataSource()
   constructor(/*private portfolioService: PortfolioService*/) { 
     // transactionService.getTransactions().subscribe(res => {
       let res = testPortfolio;
       let data: IPortfolioData[] = []
-      for (let point of res)
-      {
+      for (let point of res) {
         let currentPrice = 300;
         let changePriceTmp = Math.round(currentPrice - point.price);
         let changePercentTmp = `${Math.round((currentPrice / (point.price) - 1.0) * 100)}%`;
@@ -38,7 +35,6 @@ export class PortfolioComponent implements OnInit {
           amount: point.amount,
           changePrice: changePriceTmp,
           changePercent: changePercentTmp
-          // percentColor: changePercentTmp == '-' ? "red" : "green"
         }
         data.push(tmp)
       }
