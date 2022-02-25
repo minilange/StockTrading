@@ -7,23 +7,23 @@
         <mat-card fxFlex="30" style="height: 93vh;">
             <mat-card-title>Overview</mat-card-title>
             <mat-card-content>
-                <stock-overview (selectedStockChanged)="changeStock($event)"></stock-overview>
+                <stock-overview></stock-overview>
             </mat-card-content>
         </mat-card>
         <section fxFlex="70" fxLayout="column" fxLayoutGap="10px">
             <mat-card fxFlex style="height: 53vh;">
                 <mat-card-content>
-                    <stock-chart [selectedStock]="selectedStock"></stock-chart>
+                    <stock-chart></stock-chart>
                 </mat-card-content>
             </mat-card>
             <section fxLayout="row" fxFlex fxLayoutAlign="stretch" fxLayoutGap="10px">
-                <mat-card fxFlex="40" style="height: 45vh; overflow-y: scroll;">
+                <mat-card fxFlex="50" style="height: 38.5vh; overflow-y: scroll;">
                     <mat-card-title>Portfolio</mat-card-title>
                     <mat-card-content>
                         <stock-portfolio></stock-portfolio>
                     </mat-card-content>
                 </mat-card>
-                <mat-card fxFlex  style="height: 45vh; overflow-y: scroll;">
+                <mat-card fxFlex  style="height: 38.5vh; overflow-y: scroll;">
                     <mat-card-title>Transactions</mat-card-title>
                     <mat-card-content>
                         <stock-transaction-log></stock-transaction-log>

@@ -29,7 +29,7 @@ namespace StockTradingBackend.Classes
     {
         // Cooldown in seconds
         public string Name { get; set; }
-        private double CooldownPeriod { get; set; }
+        private int CooldownPeriod { get; set; }
         private List<Stock> TargetedStocks { get; set; }
         // Holdings of stock?
 
@@ -58,11 +58,17 @@ namespace StockTradingBackend.Classes
                     string operation;
                     if (action == 0) // Buys
                     {
-                        int amount = rnd.Next(1, targetedStock.StockAmount / 10);
-                        Console.WriteLine($"Trader: '{Name}' bought {amount} stock");
-                        TradeStock(targetedStock, Action.Buy, amount);
-                        operation = "buy";
-                        
+                        if(targetedStock.StockAmount > 0)
+                        {
+                            int amount = rnd.Next(1, targetedStock.StockAmount / 10);
+                            Console.WriteLine($"Trader: '{Name}' bought {amount} stock");
+                            TradeStock(targetedStock, Action.Buy, amount);
+                            operation = "buy";
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Trader: {Name} couldn't buy {targetedStock.Name}, as there are only {targetedStock.StockAmount} available stocks left...");
+                        }
                     }
                     else // Sells
                     {
@@ -75,13 +81,13 @@ namespace StockTradingBackend.Classes
                     LogToDB(targetedStock.Name, operation, Name, oldPrice, targetedStock.Price);
 
 
-                    CooldownPeriod = rnd.Next(2, 8);
+                    CooldownPeriod = rnd.Next(5, 10);
                     Console.WriteLine("--------------------------------------------------------");
                 }
 
                 //Thread.Sleep(rnd.Next(450, 555));
                 
-                Thread.Sleep(5000);
+                Thread.Sleep(1000);
             }
         }
 

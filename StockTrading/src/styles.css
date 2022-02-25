@@ -1,16 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-  
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 92%;
-    background-color: rgba(170, 170, 170, 0); /* or add it to the track */
-    border-radius: 8px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-      background: #004281;
-      border-radius: 8px;
-  }
+html,
+body {
+  overflow-y: hidden;
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 92%;
+  background-color: rgba(170, 170, 170, 0); /* or add it to the track */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #004281;
+  border-radius: 8px;
+}
