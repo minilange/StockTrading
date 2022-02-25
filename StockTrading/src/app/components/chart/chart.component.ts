@@ -10,7 +10,7 @@ import {
   ApexXAxis,
   ApexTooltip
 } from "ng-apexcharts";
-import { HistoryService } from '../../services';
+import { HistoryService, StocksService } from '../../services';
 
 @Component({
   selector: 'stock-chart',
@@ -32,13 +32,13 @@ export class ChartComponent implements OnInit {
 
 
 
-  viewingStock: string = "ICL"
+  selectedStock: string = "BH"
 
-  constructor(private historyService: HistoryService) {
-    historyService.getHistory(this.viewingStock).subscribe(() => {
+  constructor(private historyService: HistoryService, private stockService: StocksService) {
+    historyService.getHistory(this.selectedStock).subscribe(() => {
 
        setInterval(() => {
-         historyService.getHistory(this.viewingStock).subscribe(data => {
+         historyService.getHistory(this.selectedStock).subscribe(data => {
            let ts2 = 0;
            let dates = [];
            for (let point of data) {
@@ -50,7 +50,7 @@ export class ChartComponent implements OnInit {
 
            this.series = [
              {
-               name: this.viewingStock,
+               name: this.selectedStock,
                data: dates as []
              }
            ];
@@ -120,11 +120,19 @@ export class ChartComponent implements OnInit {
 
   }
 
+  public changeTicker(ticker: string){
+    console.log("Changing ticker to: " + ticker);
+    this.selectedStock = ticker;
+    console.log("Ticker is now: " + this.selectedStock);
+  }
+
   buyStock(amount: any) {
-    console.log(`Buying ${amount} shares of ${this.viewingStock}`);
+    console.log(`Buying ${amount} shares of ${this.selectedStock}`);
+    this.stockService.tradeStock(this.selectedStock, 100, "buy");
   }
 
   sellStock(amount: any) {
-    console.log(`Selling ${amount} shares of ${this.viewingStock}`);
+    console.log(`Selling ${amount} shares of ${this.selectedStock}`);
+    this.stockService.tradeStock(this.selectedStock, 100, "sell");
   }
 }

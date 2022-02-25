@@ -19,4 +19,9 @@ export class StocksService {
       })
     )
   }
+
+  tradeStock(ticker: string, numTraded: number, operation: string) {
+    let jsonObj: object = { Ticker: ticker, NumTraded: numTraded, Operation: operation };
+    this.http.put("/api/Trade/" + ticker, JSON.stringify(jsonObj));
+  }
 }

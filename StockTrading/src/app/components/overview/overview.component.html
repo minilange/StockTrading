@@ -25,9 +25,9 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="stockSelectChange('hello')"></tr>
 
-  <tr class="mat-row" *matNoDataRow>
+  <tr class="mat-row" *matNoDataRow  (click)="stockSelectChange('hello')">
     <td class="mat-cell" colspan="4"> No data was found</td>
   </tr>
 </table>
