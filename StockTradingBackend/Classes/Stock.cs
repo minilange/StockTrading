@@ -24,24 +24,21 @@ namespace StockTradingBackend.Classes
         public int StockAmount { get { return stockAmount; } }
         public double Price { get { return price; } }
         public string TickerSymbol { get; }
+        
         public Stock(string stockName, string ticker, double latestPrice)
         {
             name = stockName;
             TickerSymbol = ticker;
             price = latestPrice;
 
-            // Set random stock ammount
+            // Update from database when instantiating
             using (var context = new StockMarketContext())
             {
                 // Update stock table
                 var res = context.Stocks.Where(i => i.Name == name).FirstOrDefault();
                 publicAvailableStock = res.Issued;
-
+                stockAmount = res.Available;
             }
-            //publicAvailableStock = rnd.Next(1000, 20000);
-
-            stockAmount = publicAvailableStock;
-            //stockAmount = rnd.Next(100, 5000);
         }
 
         public override async void BuyItem(int amount)
