@@ -22,6 +22,9 @@ export class StocksService {
 
   tradeStock(ticker: string, numTraded: number, operation: string) {
     let jsonObj: object = { Ticker: ticker, NumTraded: numTraded, Operation: operation };
-    this.http.put("/api/Trade/" + ticker, JSON.stringify(jsonObj));
+    console.log(JSON.stringify(jsonObj), typeof(JSON.stringify(jsonObj)), "/api/Trade/" + ticker);
+    this.http.put("/trade/" + ticker, JSON.stringify(jsonObj)).subscribe(resp => {
+      console.log(resp);
+    });
   }
 }

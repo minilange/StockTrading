@@ -13,7 +13,7 @@ namespace StockTradingBackend.Controllers
         {
             using (var context = new StockMarketContext())
             {
-                return context.Transactions.ToList().OrderBy(i => i.TimeStamp).Take(20);
+                return context.Transactions.ToList().OrderByDescending(i => i.Id).Take(50);
             }
         }
     }

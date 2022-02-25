@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -20,6 +20,12 @@ import { HistoryService, StocksService } from '../../services';
 
 export class ChartComponent implements OnInit {
 
+  @Input() set selectedStock(stock: string) {
+    console.log("Selected: " + stock)
+    this._selected = stock;
+    this.changeSelectedStock(this._selected);
+  };
+
   public series: ApexAxisChartSeries;
   public chart: ApexChart;
   public dataLabels: ApexDataLabels;
@@ -30,32 +36,13 @@ export class ChartComponent implements OnInit {
   public xaxis: ApexXAxis;
   public tooltip: ApexTooltip;
 
-
-
-  selectedStock: string = "BH"
+  _selected: string = "WEED"
 
   constructor(private historyService: HistoryService, private stockService: StocksService) {
-    historyService.getHistory(this.selectedStock).subscribe(() => {
-
-       setInterval(() => {
-         historyService.getHistory(this.selectedStock).subscribe(data => {
-           let ts2 = 0;
-           let dates = [];
-           for (let point of data) {
-             let tmp = new Date(point.date);
-             ts2 = tmp.getTime();
-             dates.push([ts2, point.value]);
-           }
-           console.log(dates);
-
-           this.series = [
-             {
-               name: this.selectedStock,
-               data: dates as []
-             }
-           ];
-         })
-       }, 5000)
+    historyService.getHistory(this._selected).subscribe(() => {
+      setInterval(() => {
+        this.changeSelectedStock(this._selected);
+      }, 5000)
     })
 
     this.series = [];
@@ -120,19 +107,38 @@ export class ChartComponent implements OnInit {
 
   }
 
-  public changeTicker(ticker: string){
-    console.log("Changing ticker to: " + ticker);
-    this.selectedStock = ticker;
-    console.log("Ticker is now: " + this.selectedStock);
-  }
+  // public changeTicker(ticker: string) {
+  //   console.log("Changing ticker to: " + ticker);
+  //   this._selected = ticker;
+  //   console.log("Ticker is now: " + this._selected);
+  // }
 
   buyStock(amount: any) {
-    console.log(`Buying ${amount} shares of ${this.selectedStock}`);
-    this.stockService.tradeStock(this.selectedStock, 100, "buy");
+    console.log(`Buying ${amount} shares of ${this._selected}`);
+    this.stockService.tradeStock(this._selected, 100, "buy");
   }
 
   sellStock(amount: any) {
-    console.log(`Selling ${amount} shares of ${this.selectedStock}`);
-    this.stockService.tradeStock(this.selectedStock, 100, "sell");
+    console.log(`Selling ${amount} shares of ${this._selected}`);
+    this.stockService.tradeStock(this._selected, 100, "sell");
+  }
+
+  changeSelectedStock(stock: string) {
+    this.historyService.getHistory(stock).subscribe(data => {
+      let ts2 = 0;
+      let dates = [];
+      for (let point of data) {
+        let tmp = new Date(point.date);
+        ts2 = tmp.getTime();
+        dates.push([ts2, point.value]);
+      }
+      this.series = [
+        {
+          name: stock,
+          data: dates as []
+        }
+      ];
+      console.log(stock)
+    })
   }
 }

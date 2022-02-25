@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ChartComponent } from 'ng-apexcharts';
 
 @Component({
   selector: 'app-root',
@@ -7,15 +8,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public forecasts?: WeatherForecast[];
-
-  constructor(http: HttpClient) {
-    http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
-  }
 
   title = 'StockTrading';
+
+  selectedStock: string = "";
+
+  constructor() {
+    this.changeStock("WEED");
+   }
+
+  changeStock(newStock: string) {
+    this.selectedStock = (' ' + newStock).slice(1);
+    console.log("Emitted " + this.selectedStock);
+  }
 }
 
 interface WeatherForecast {
