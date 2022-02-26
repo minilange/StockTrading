@@ -30,7 +30,12 @@
       "ProjectGuid": "373d69d4-fabb-4bb3-bc65-ead6bf2196d7",
       "DisplayName": "StockTradingBackend",
       "ColorIndex": 4
+    },
+    "ed3564b0-7951-4c0b-9277-a439ae843dde": {
+      "ProjectGuid": "ed3564b0-7951-4c0b-9277-a439ae843dde",
+      "DisplayName": "StockTradingBackendAPI",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 6
 }

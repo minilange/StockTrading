@@ -113,12 +113,12 @@ export class ChartComponent implements OnInit {
   //   console.log("Ticker is now: " + this._selected);
   // }
 
-  buyStock(amount: any) {
+  buyStock(amount: number) {
     console.log(`Buying ${amount} shares of ${this._selected}`);
     this.stockService.tradeStock(this._selected, 100, "buy");
   }
 
-  sellStock(amount: any) {
+  sellStock(amount: number) {
     console.log(`Selling ${amount} shares of ${this._selected}`);
     this.stockService.tradeStock(this._selected, 100, "sell");
   }

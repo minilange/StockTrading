@@ -92,8 +92,6 @@ namespace StockTradingBackend.Classes
                     Console.WriteLine("--------------------------------------------------------");
                 }
 
-                //Thread.Sleep(rnd.Next(450, 555));
-                
                 Thread.Sleep(1000);
             }
         }

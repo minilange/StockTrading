@@ -19,15 +19,13 @@ export class OverviewComponent implements OnInit {
   @Output() selectedStockChanged: EventEmitter<string> = new EventEmitter<string>()
 
 
-  displayedColumns: string[] = ["Name", "Ticker", "Price", "Issued", "Available"];
+  displayedColumns: string[] = ["Name", "Ticker", "Price", "Available", "Issued"];
   dataSource: MatTableDataSource<IStock> = new MatTableDataSource();
 
   constructor(private stockService: StocksService) {
-    stockService.getStock().subscribe(() => {
-      setInterval(() => {
-        stockService.getStock().subscribe(res => this.dataSource = new MatTableDataSource(res));
-      }, 2500)
-    })
+    setInterval(() => {
+      stockService.getStock().subscribe(res => this.dataSource = new MatTableDataSource(res));
+    }, 2500)
   }
 
   ngOnInit(): void {
