@@ -57,7 +57,7 @@ namespace StockTradingBackend.Classes
                     if (action == 0) // Buys
                     {
                        
-                        if (targetedStock.StockAmount > 0)
+                        if (targetedStock.StockAmount > 10 && targetedStock.StockAmount <= targetedStock.IssuedStock)
                         {
                             int amount = rnd.Next(1, targetedStock.StockAmount / 10);
                             Console.WriteLine($"Trader: '{Name}' bought {amount} stock");
@@ -69,7 +69,6 @@ namespace StockTradingBackend.Classes
                             Console.WriteLine($"Trader: {Name} couldn't buy {targetedStock.Name}, as there are only {targetedStock.StockAmount} available stocks left...");
                             break;
                         }
-                        
                     }
                     else // Sells
                     {

@@ -20,6 +20,7 @@ namespace StockTradingBackend.Classes
 
         public string Name { get { return name; } }
         public int StockAmount { get { return stockAmount; } } 
+        public int IssuedStock { get { return publicAvailableStock; } }
         public double Price { get { return price; } }
         public string TickerSymbol { get; }
         
