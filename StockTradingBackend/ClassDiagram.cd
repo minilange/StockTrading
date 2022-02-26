@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Comment CommentText="Classes folder">
+    <Position X="15.258" Y="0.533" Height="0.3" Width="3.508" />
+  </Comment>
+  <Comment CommentText="Controllers folder">
+    <Position X="19.527" Y="0.527" Height="0.32" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Models folder">
+    <Position X="8.704" Y="0.5" Height="0.331" Width="6.141" />
+  </Comment>
+  <Class Name="StockTradingBackend.Classes.Market">
+    <Position X="15.25" Y="1" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="StockTradingBackend.Classes.Market.StockDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Classes\Market.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="StockTradingBackend.Classes.Market.TraderDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Classes\Market.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAQAAAAAMAAAQAAAAAAAAA=</HashCode>
+      <FileName>Classes\Market.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Classes.MarketItem">
+    <Position X="13" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAiAAAQAAAAEAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Stock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Classes.Stock">
+    <Position X="13" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAABAAiAQAQAAAAEAEACAQAAAgAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Stock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Classes.MarketParticipant">
+    <Position X="17.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Trader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Classes.Trader">
+    <Position X="17.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAQAAAAAAAAAIAKAAAAAAAA=</HashCode>
+      <FileName>Classes\Trader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Controllers.HistoryController">
+    <Position X="19.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\HistoryController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Controllers.StockController">
+    <Position X="19.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\StockController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Controllers.TradeController">
+    <Position X="19.5" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\TradeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Controllers.TransactionController">
+    <Position X="19.5" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TransactionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Models.History">
+    <Position X="11" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAQAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\History.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Models.Stock">
+    <Position X="15.25" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAAQAAAAACAAAAAARAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Stock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Models.StockMarketContext">
+    <Position X="10.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AACAAABAAQAQAAAAAAAAAAAAkAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\StockMarketContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Models.Trade">
+    <Position X="9" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAEAQAAAAAA=</HashCode>
+      <FileName>Models\Trade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StockTradingBackend.Models.Transaction">
+    <Position X="8.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAAAAAAAAAAAAAAAAAgAAACABAAAECAAAAAAA=</HashCode>
+      <FileName>Models\Transaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="StockTradingBackend.Classes.Action">
+    <Position X="17.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Trader.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

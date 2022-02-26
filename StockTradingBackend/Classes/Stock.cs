@@ -56,7 +56,7 @@ namespace StockTradingBackend.Classes
             await haveUpdated;
 
             stockAmount += amount;
-            DecreasePrice(1.0 - ((double)amount / (double)publicAvailableStock / 4));
+            DecreasePrice(1.0 - ((double)amount / (double)publicAvailableStock / 3));
 
             Console.WriteLine($"'{this.name}' has been sold, price is now ${Price} and {StockAmount} is left");
         }
