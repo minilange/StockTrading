@@ -53,7 +53,7 @@ namespace StockTradingBackend.Classes
                     Stock targetedStock = TargetedStocks[rnd.Next(0, TargetedStocks.Count)];
                     
                     double oldPrice = targetedStock.Price;
-                    string operation = "";
+                    string operation;
                     if (action == 0) // Buys
                     {
                        
@@ -93,8 +93,6 @@ namespace StockTradingBackend.Classes
                     Console.WriteLine("--------------------------------------------------------");
                 }
 
-                //Thread.Sleep(rnd.Next(450, 555));
-                
                 Thread.Sleep(1000);
             }
         }
