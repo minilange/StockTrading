@@ -55,7 +55,7 @@ namespace StockTradingBackend.Classes
                     Stock targetedStock = TargetedStocks[rnd.Next(0, TargetedStocks.Count)];
                     
                     double oldPrice = targetedStock.Price;
-                    string operation;
+                    string operation = "";
                     if (action == 0) // Buys
                     {
                         if(targetedStock.StockAmount > 0)

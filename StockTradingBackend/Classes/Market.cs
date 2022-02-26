@@ -4,10 +4,11 @@ namespace StockTradingBackend.Classes
 {
     public class Market
     {
-        //public int MarketState { get; set; };
+        public delegate void StockDelegate();
+        public delegate void TraderDelegate();
+
         public List<Stock> stocks = new List<Stock>();
         public List<Thread> Traders = new List<Thread>();
-
 
         public Market()
         {
@@ -16,19 +17,22 @@ namespace StockTradingBackend.Classes
 
         public void OpenMarket()
         {
+
+            StockDelegate stockDel = this.InitializeStocks;
+            TraderDelegate traderDel = this.InitializeTraders;
+
             // Intialize stock(s)
-            InitializeStocks();
+            stockDel.Invoke();
 
             // Intialize Traders in threads
-            InitializeTraders();
-
+            traderDel.Invoke();
         }
 
         private void InitializeStocks()
         {
             using (var context = new StockMarketContext())
             {
-                
+
                 var stc = context.Stocks.ToList();
                 foreach (Models.Stock stock in stc)
                 {
@@ -40,11 +44,17 @@ namespace StockTradingBackend.Classes
 
         private void InitializeTraders()
         {
-            List<string> traderNames = new List<string> { "Olivia-Grace Hines", "Ryley Archer", "Alan Wong", "Aayush Peters", "Rurai Allan", "Anders Holch Povlsen", "Henrik Andersen", "Ove Lunddal", "Carl Lee Ladefoged", "Martin Lange", "Tobias Jonsen"};
+            List<string> traderNames = new List<string> { "Olivia-Grace Hines", "Ryley Archer", "Alan Wong", "Aayush Peters", "Rurai Allan", "Anders Holch Povlsen", "Henrik Andersen", "Ove Lunddal", "Carl Lee Ladefoged", "Martin Lange", "Tobias Jonsen", "Warren Buffet" };
             foreach (string traderName in traderNames)
             {
                 Trader trader = new Trader(stocks, traderName);
                 Thread thread = new Thread(() => trader.InitializeTrader());
+                
+                if (traderName == "Warren Buffet")
+                {
+                    thread.Priority = ThreadPriority.Highest;
+                }
+
                 thread.Start();
                 Thread.Sleep(1000);
             }
