@@ -27,11 +27,9 @@ namespace StockTradingBackend.Classes
 
     public class Trader : MarketParticipant
     {
-        // Cooldown in seconds
         public string Name { get; set; }
         private int CooldownPeriod { get; set; }
         private List<Stock> TargetedStocks { get; set; }
-        // Holdings of stock?
 
 
         public Trader(List<Stock> target, string name)
@@ -58,7 +56,8 @@ namespace StockTradingBackend.Classes
                     string operation;
                     if (action == 0) // Buys
                     {
-                        if(targetedStock.StockAmount > 0)
+                       
+                        if (targetedStock.StockAmount > 0)
                         {
                             int amount = rnd.Next(1, targetedStock.StockAmount / 10);
                             Console.WriteLine($"Trader: '{Name}' bought {amount} stock");
@@ -68,18 +67,27 @@ namespace StockTradingBackend.Classes
                         else
                         {
                             Console.WriteLine($"Trader: {Name} couldn't buy {targetedStock.Name}, as there are only {targetedStock.StockAmount} available stocks left...");
+                            break;
                         }
+                        
                     }
                     else // Sells
                     {
-                        int amount = rnd.Next(1, (targetedStock.StockAmount / 10));
-                        Console.WriteLine($"Trader: '{Name}' sold {amount} stock");
-                        TradeStock(targetedStock, Action.Sell, amount);
-                        operation = "sell";
+                        if (targetedStock.Price > 0.1)
+                        {
+                            int amount = rnd.Next(1, (targetedStock.StockAmount / 10));
+                            Console.WriteLine($"Trader: '{Name}' sold {amount} stock");
+                            TradeStock(targetedStock, Action.Sell, amount);
+                            operation = "sell";
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Trader: {Name} couldn't sell {targetedStock.Name}, as the price is 0");
+                            break;
+                        }
                     }
 
                     LogToDB(targetedStock.Name, operation, Name, oldPrice, targetedStock.Price);
-
 
                     CooldownPeriod = rnd.Next(5, 10);
                     Console.WriteLine("--------------------------------------------------------");
@@ -107,13 +115,6 @@ namespace StockTradingBackend.Classes
                 context.SaveChanges();
             }
         }
-    }
-
-
-    public class Fund : MarketParticipant
-    {
-        // Fund with larger amounts of money, but fewer transactions
-
     }
 
     public enum Action

@@ -15,13 +15,11 @@ namespace StockTradingBackend.Classes
 
     public class Stock : MarketItem
     {
-        //private new double price;
-        private static Random rnd = new Random();
         private static int publicAvailableStock;
         private int stockAmount;
 
         public string Name { get { return name; } }
-        public int StockAmount { get { return stockAmount; } }
+        public int StockAmount { get { return stockAmount; } } 
         public double Price { get { return price; } }
         public string TickerSymbol { get; }
         
@@ -34,7 +32,6 @@ namespace StockTradingBackend.Classes
             // Update from database when instantiating
             using (var context = new StockMarketContext())
             {
-                // Update stock table
                 var res = context.Stocks.Where(i => i.Name == name).FirstOrDefault();
                 publicAvailableStock = res.Issued;
                 stockAmount = res.Available;
@@ -45,9 +42,9 @@ namespace StockTradingBackend.Classes
         {
             Task<bool> haveUpdated = ReadFromDB();
             await haveUpdated;
-            //price *= amount / stockAmount + 1;
-            IncreasePrice(((double)amount / (double)publicAvailableStock / 2) + 1.0);
+
             stockAmount -= amount;
+            IncreasePrice(((double)amount / (double)publicAvailableStock / 2) + 1.0);
 
             Console.WriteLine($"'{this.name}' has been bought, price is now ${Price} and {StockAmount} is left");
         }
@@ -56,18 +53,18 @@ namespace StockTradingBackend.Classes
         {
             Task<bool> haveUpdated = ReadFromDB();
             await haveUpdated;
-            //price *= 1 - amount / stockAmount;
-            DecreasePrice(1.0 - ((double)amount / (double)publicAvailableStock / 2));
-            stockAmount += amount;
 
-            Console.WriteLine($"'{this.name}' has been bought, price is now ${Price} and {StockAmount} is left");
+            stockAmount += amount;
+            DecreasePrice(1.0 - ((double)amount / (double)publicAvailableStock / 4));
+
+            Console.WriteLine($"'{this.name}' has been sold, price is now ${Price} and {StockAmount} is left");
         }
 
         protected override void IncreasePrice(double amount)
         {
+            // amount is here the decimal number which represents the percentage change in the price (e.g. 1.02, representing a 2% increase in price)
             Console.WriteLine($"'{Name}' increased by +{Math.Round((price * amount) - price, 2)} ({Math.Round(amount, 2)}%)");
             price = Math.Round(price * amount, 2);
-            // Update price in frontend
 
             LogToDB(name, TickerSymbol, price);
         }
@@ -75,7 +72,6 @@ namespace StockTradingBackend.Classes
         {
             Console.WriteLine($"'{Name}' decreased by {Math.Round((price * amount) - price, 2)} ({Math.Round(amount,2)}%)");
             price = Math.Round(price * amount, 2);
-            // Update price in frontend
 
             LogToDB(name, TickerSymbol, price);
         }
@@ -92,18 +88,17 @@ namespace StockTradingBackend.Classes
             }
         }
 
-        //protected void UpdateStock()
-
         protected void LogToDB(string name, string ticker, double price)
         {
             using (var context = new StockMarketContext())
             {
-                // Update stock table
+                // Update stock table with stock amount available and price
                 var res = context.Stocks.Where(i => i.Name == name).FirstOrDefault();
+                res.Available = StockAmount;
                 res.Price = price;
                 context.Update(res);
 
-                // Update history table
+                // Insert history entry for the ticker, with timestamp and price
                 History hist = new History();
                 hist.Ticker = ticker;
                 hist.Price = price;
@@ -114,5 +109,4 @@ namespace StockTradingBackend.Classes
             }
         }
     }
-
 }
