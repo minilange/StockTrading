@@ -56,33 +56,34 @@ namespace StockTradingBackend.Classes
                     string operation;
                     if (action == 0) // Buys
                     {
-                       
-                        if (targetedStock.StockAmount > 10 && targetedStock.StockAmount <= targetedStock.IssuedStock)
+
+                        operation = "buy";
+
+                        if (targetedStock.StockAmount > 10)
                         {
                             int amount = rnd.Next(1, targetedStock.StockAmount / 10);
                             Console.WriteLine($"Trader: '{Name}' bought {amount} stock");
                             TradeStock(targetedStock, Action.Buy, amount);
-                            operation = "buy";
+                            
                         }
                         else
                         {
                             Console.WriteLine($"Trader: {Name} couldn't buy {targetedStock.Name}, as there are only {targetedStock.StockAmount} available stocks left...");
-                            break;
                         }
                     }
                     else // Sells
                     {
-                        if (targetedStock.Price > 0.1)
+                        operation = "sell";
+                        int amount = rnd.Next(1, (targetedStock.StockAmount / 10));
+
+                        if (targetedStock.Price > 0.1 && (targetedStock.StockAmount + amount) <= targetedStock.IssuedStock)
                         {
-                            int amount = rnd.Next(1, (targetedStock.StockAmount / 10));
                             Console.WriteLine($"Trader: '{Name}' sold {amount} stock");
                             TradeStock(targetedStock, Action.Sell, amount);
-                            operation = "sell";
                         }
                         else
                         {
-                            Console.WriteLine($"Trader: {Name} couldn't sell {targetedStock.Name}, as the price is 0");
-                            break;
+                            Console.WriteLine($"Trader: {Name} couldn't sell {targetedStock.Name}.");
                         }
                     }
 
