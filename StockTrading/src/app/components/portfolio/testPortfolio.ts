@@ -7,19 +7,9 @@ export const testPortfolio: IPortfolio[] = [
         amount: 100
     },
     {
-        ticker: "ICL",
-        price: 60,
-        amount: 100
-    },
-    {
         ticker: "WEED",
         price: 23,
-        amount: 100
-    },
-    {
-        ticker: "WEED",
-        price: 42,
-        amount: 100
+        amount: 150
     },
     {
         ticker: "BH",
@@ -28,12 +18,7 @@ export const testPortfolio: IPortfolio[] = [
     },
     {
         ticker: "GE",
-        price: 450,
-        amount: 100
-    },
-    {
-        ticker: "GE",
-        price: 234,
-        amount: 100
+        price: 264,
+        amount: 200
     }
 ]

@@ -44,7 +44,8 @@ namespace StockTradingBackend.Classes
 
         private void InitializeTraders()
         {
-            List<string> traderNames = new List<string> { "Olivia-Grace Hines", "Ryley Archer", "Alan Wong", "Aayush Peters", "Rurai Allan", "Anders Holch Povlsen", "Henrik Andersen", "Ove Lunddal", "Carl Lee Ladefoged", "Martin Lange", "Tobias Jonsen", "Warren Buffet" };
+            List<string> traderNames = new List<string> { "Olivia-Grace Hines", "Ryley Archer", "Alan Wong", "Aayush Peters", "Rurai Allan", "Anders Holch Povlsen", 
+                                                          "Henrik Andersen", "Ove Lunddal", "Carl Lee Ladefoged", "Martin Lange", "Tobias Jensen", "Warren Buffet" };
             foreach (string traderName in traderNames)
             {
                 Trader trader = new Trader(stocks, traderName);

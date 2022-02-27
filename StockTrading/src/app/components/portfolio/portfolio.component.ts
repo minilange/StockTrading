@@ -21,28 +21,39 @@ interface IPortfolioData {
 export class PortfolioComponent implements OnInit {
   displayedColumnsPort: string[] = ["Ticker", "Price", "Amount", "Change"];
   dataSourcePort: MatTableDataSource<IPortfolioData> = new MatTableDataSource()
-  constructor(/*private portfolioService: PortfolioService*/) { 
-    // transactionService.getTransactions().subscribe(res => {
-      let res = testPortfolio;
-      let data: IPortfolioData[] = []
-      for (let point of res) {
-        let currentPrice = 300;
-        let changePriceTmp = Math.round(currentPrice - point.price);
-        let changePercentTmp = `${Math.round((currentPrice / (point.price) - 1.0) * 100)}%`;
-        let tmp: IPortfolioData = {
-          ticker: point.ticker,
-          price: point.price,
-          amount: point.amount,
-          changePrice: changePriceTmp,
-          changePercent: changePercentTmp
+  constructor(private stockService: StocksService) {
+    
+    setInterval(() => {
+      stockService.getStock().subscribe(res =>
+      {
+        let testPort = testPortfolio;
+        let data: IPortfolioData[] = [];
+
+        for (let point of testPort) {
+          for (let stock of res) {
+            if (point.ticker == stock.ticker) {
+              let currentPrice = stock.price;
+              let changePriceTmp = Math.round(currentPrice - point.price);
+              let changePercentTmp = `${Math.round((currentPrice / (point.price) - 1.0) * 100)}%`;
+              let tmp: IPortfolioData = {
+                ticker: point.ticker,
+                price: point.price,
+                amount: point.amount,
+                changePrice: changePriceTmp,
+                changePercent: changePercentTmp
+              }
+              data.push(tmp)
+              break;
+            }            
+          }
         }
-        data.push(tmp)
-      }
-      this.dataSourcePort = new MatTableDataSource(data);
-    // })
-    }
+        this.dataSourcePort = new MatTableDataSource(data);
+
+      });
+    }, 2500)
+  }
+
   ngOnInit(): void {
     
   }
-
 }
