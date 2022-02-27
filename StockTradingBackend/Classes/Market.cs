@@ -56,6 +56,7 @@ namespace StockTradingBackend.Classes
                 }
 
                 thread.Start();
+                System.Diagnostics.Trace.WriteLine($"Thread: {thread.Name} was started with Trader: {trader.Name}");
                 Thread.Sleep(1000);
             }
         }

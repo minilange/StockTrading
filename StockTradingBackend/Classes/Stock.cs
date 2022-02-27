@@ -39,6 +39,19 @@ namespace StockTradingBackend.Classes
             }
         }
 
+        public Stock(string stockName, string Ticker)
+        {
+            // Constructor override for randomly generated stocks: Mostly for testing, as database would be overwritten
+            Random rnd = new Random();
+
+            name = stockName;
+            TickerSymbol = Ticker;
+            price = rnd.NextDouble() * (500.00 - 10.00) + 10.00;
+            publicAvailableStock = rnd.Next(1000, 20000);
+            stockAmount = rnd.Next(1000, publicAvailableStock);
+
+        }
+
         public override async void BuyItem(int amount)
         {
             Task<bool> haveUpdated = ReadFromDB();

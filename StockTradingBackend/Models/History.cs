@@ -9,13 +9,5 @@ namespace StockTradingBackend.Models
         public string Ticker { get; set; } = null!;
         public double Price { get; set; }
         public string TimeStamp { get; set; } = null!;
-
-        //public History(string ticker, double price )
-        //{
-        //    this.Ticker = ticker;
-        //    this.Price = price;
-        //    DateTime time = new DateTime();
-        //    this.TimeStamp = time.ToString("yyyy-MM-ddTHH:mm:ss.ff");
-        //}
     }
 }

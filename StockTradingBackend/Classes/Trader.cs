@@ -10,7 +10,6 @@ namespace StockTradingBackend.Classes
             /* Lock stock */
             lock (targetedStock)
             {
-                // Adjust price
                 if (action == Action.Buy)
                 {
                     // Add
